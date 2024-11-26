@@ -1,10 +1,17 @@
-<h1>My tasks</h1>
-<ul>
+<h1 class="mb-3">My tasks</h1>
+<ul class="list-unstyled">
   <% @tasks.each do |task| %>
-    <li>
-      <%= link_to task.title, task_path(task) %>
-      <%= link_to 'Delete', task_path(task), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <li class="d-flex align-items-center mb-2">
+      <%= form_with model: task, url: toggle_complete_task_path(task), method: :patch, local: true do |f| %>
+        <%= f.check_box :completed, { class: 'task-checkbox' }, true, false %>
+      <% end %>
+      <%= link_to task.title, task_path(task), class: 'flex-grow-1 text-decoration-none ml-2' %>
+      <%= link_to 'Delete', task_path(task),
+                  method: :delete,
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                  class: 'btn btn-sm btn-danger ml-2' %>
     </li>
+
   <% end %>
 </ul>
-<p><%= link_to 'Add a new task', tasks_new_path %></p>
+<p><%= link_to 'Add a new task', tasks_new_path, class: 'btn btn-primary' %></p>

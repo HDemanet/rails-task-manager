@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   delete 'tasks/:id', to: 'tasks#destroy'
   # route - afficher les details d'une tache
   get 'tasks/:id', to: 'tasks#show', as: :task
+
+  patch 'tasks/:id/toggle_complete', to: 'tasks#toggle_complete', as: :toggle_complete_task
+
 end

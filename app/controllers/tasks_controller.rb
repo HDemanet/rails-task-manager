@@ -36,6 +36,15 @@ class TasksController < ApplicationController
     redirect_to tasks_path, status: :see_other
   end
 
+  def toggle_complete
+    @task = Task.find(params[:id])
+    @task.update(completed: !@task.completed)
+    respond_to do |format|
+      format.html { redirect_to tasks_path }
+      format.turbo_stream
+    end
+  end
+
   private
 
   def task_params
