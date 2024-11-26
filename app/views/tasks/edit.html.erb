@@ -1,0 +1,16 @@
+<h1 class="mb-4">Edit Task</h1>
+
+<%= form_with model: @task, url: task_path(@task), method: :patch do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :details %>
+  <%= f.text_area :details %>
+
+  <%= f.label :completed, "Completed" %>
+  <%= f.check_box :completed %>
+
+  <%= f.submit "Update Task" %>
+<% end %>
+
+<p><%= link_to 'Back to list', tasks_path %></p>
